@@ -1,0 +1,70 @@
+
+biz REST da
+
+gRPC lar aro malumot almashishni bir-nech xil usullari bor
+
+	1.unary
+		bunda: client serverga zapros jonatadi!
+			   server clientga request jonatadi
+			   bitta response bitta request!
+
+	2.binary (streamga o'xshaydi)
+		bunda: client serverga birmarta zapros jo'natadi!
+			   server unga ma;lumotni bo'lib-bo'lib jo'nayib turadi
+
+	3.biderctionary
+		bunda: klient multiple zapros jonatoladi!
+			   serverham multiple request beradi
+
+protocol-buffer
+	binary serialization :tcp:/
+
+	ikki app orasida malumotlar binary serialization formatda almashad
+
+    install	protobuf-compiler
+
+	$ apt install -y protobuf-compiler
+	$ protoc --version
+
+	1.Install the protocol compiler plugins for Go using the following commands:
+
+		- go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
+
+		- go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
+
+	2.Update your PATH so that the protoc compiler can find the plugins:
+		
+		export PATH="$PATH:$(go env GOPATH)/bin" // for bash
+
+		echo "export PATH=$PATH:$(go env GOPATH)/bin" >> ~/.zshrc  // for zsh
+
+	changed compilling:
+	
+	$ protoc --go_out=. --go_opt=paths=source_relative \
+    --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+    helloworld/helloworld.proto		
+
+    $ protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative x/x.proto
+
+
+ 		tcp vs http
+
+ 	ikkisham protocol   
+
+ 		 http dan biz web kilent va web server orasida ma'limot almashish uchun foydalanamiz
+
+ 		 tcp generic - mashinadan mashinaga ma'lumot uzatish
+
+ 		 http dan serverlar qilingan bo'lsa, tcp dan http qilingan
+
+
+ working proto
+
+go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
+
+export PATH="$PATH:$(go env GOPATH)/bin" // for bash
+
+echo "export PATH=$PATH:$(go env GOPATH)/bin" >> ~/.zshrc  // for zsh
+
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative x/x.proto

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package greeter;
+
+option go_package = "proto-app/greeter";
+
+message Request {
+
+	string Data = 1;
+}
+
+message Response {
+
+	string Data = 1;
+}
+
+service Translater {
+
+	rpc Dictionary (Request) returns (Response) {};
+}
