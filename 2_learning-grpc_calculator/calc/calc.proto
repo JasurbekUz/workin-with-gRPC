@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package calc;
+
+option go_package = "calc_app/calc";
+
+message Request {
+
+	string Expression = 1;
+}
+
+message Response {
+
+	float Result = 1;
+}
+
+service Calculator {
+
+	rpc Count (Request) returns (Response) {};
+}
