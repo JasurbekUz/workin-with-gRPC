@@ -1,0 +1,20 @@
+syntax  = "proto3";
+
+package dict;
+
+option go_package = "dict_app/dict";
+
+message Request {
+
+	string Word = 1;
+}
+
+message Response {
+
+	string Word = 1;
+}
+
+service Translater {
+
+	rpc Dictionary (Request) returns (Response);
+}
