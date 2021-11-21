@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package dbapp;
+
+option go_package = "app/dbapp";
+
+message UserProfile {
+	string FullName = 1;
+	string UserName = 2;
+	string PhoneNumber = 3;
+}
+
+message PostUserReq {
+
+	UserProfile NewUser = 1;
+}
+
+message GetUserReq {
+
+	int64 UserId = 1;
+}
+
+message UpdateUserReq {
+
+	UserProfile UpdatedUser = 1;
+}
+
+message DeleteUserReq {
+
+	int64 UserId = 1;
+}
+
+service UsersInfo {
+
+	rpc PostUser (PostUserReq) returns (UserProfile) {}
+	rpc GetUser (GetUserReq) returns (UserProfile) {}
+	rpc UpdateUser (UpdateUserReq) returns (UserProfile) {}
+	rpc DeleteUser (DeleteUserReq) returns (UserProfile) {}
+}
+
+
+
+
